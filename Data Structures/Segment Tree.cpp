@@ -1,55 +1,45 @@
-struct SegmentTree {
-  vector<int> st;
-  int n;
-
-  SegmentTree(const vector<int> &arr) {
-    n = sz(arr);
-    st.assign(n << 2, 0);
-    build(arr, 1, 0, n - 1);
+template<typename T>
+struct STree {
+  int n; vector<T> st;
+  T neutro = T(1e9);
+  
+  STree(vector<T> &a) {
+    n = sz(a);
+    st.resize(n * 4);
+    build(1, 0, n - 1, a);
   }
-
-  int left(int v) { return v << 1; }
-
-  int right(int v) { return (v << 1) | 1; }
-
-  int operation(int a, int b) {
-    return a + b;
-  }
-
-  void build(const vector<int> &arr, int v, int tl, int tr) {
-    if (tl == tr) {
-      st[v] = arr[tl];
-    } else {
-      int tm = (tl + tr) >> 1;
-      build(arr, left(v), tl, tm);
-      build(arr, right(v), tm + 1, tr);
-      st[v] = operation(st[left(v)], st[right(v)]);
+  
+  T oper(T a, T b) { return min(a, b); }
+  
+  void build(int v, int tl, int tr, vector<T> &a) {
+    if(tl == tr) {
+      st[v] = a[tl];
+      return;
     }
+    int tm = (tr + tl) / 2;
+    build(v * 2, tl, tm, a);
+    build(v * 2 + 1, tm + 1, tr, a);
+    st[v] = oper(st[v * 2], st[v * 2 + 1]);
   }
-
-  void update(int v, int tl, int tr, int pos, int new_val) {
-    if (tl == tr) {
-      st[v] = new_val;
-    } else {
-      int tm = (tl + tr) >> 1;
-      if (pos <= tm) update(left(v), tl, tm, pos, new_val);
-      else update(right(v), tm + 1, tr, pos, new_val);
-      st[v] = operation(st[left(v)], st[right(v)]);
+  
+  T query(int v, int tl, int tr, int l, int r) {
+    if(tl > r || tr < l) return neutro;
+    if(l <= tl && tr <= r) return st[v];
+    int tm = (tl + tr) / 2;
+    return oper(query(v * 2, tl, tm, l, r), query(v * 2 + 1, tm + 1, tr, l, r));
+  }
+  
+  void upd(int v, int tl, int tr, int pos, T val) {
+    if(tl == tr) {
+      st[v] = val;
+      return;
     }
+    int tm = (tr + tl) / 2;
+    if(pos <= tm) upd(v * 2, tl, tm, pos, val);
+    else upd(v * 2 + 1, tm + 1, tr, pos, val);
+    st[v] = oper(st[v * 2], st[v * 2 + 1]);
   }
-
-  void update(int pos, int new_val) {
-    update(1, 0, n - 1, pos, new_val);
-  }
-
-  int query(int v, int tl, int tr, int l, int r) {
-    if (l > r) return 0; // Nuetro
-    if (l == tl && r == tr) return st[v];
-    int tm = (tl + tr) >> 1;
-    return operation(query(left(v), tl, tm, l, min(r, tm)), query(right(v), tm + 1, tr, max(l, tm + 1), r));
-  }
-
-  int query(int l, int r) {
-    return query(1, 0, n - 1, l, r);
-  }
+  
+  void upd(int pos, T val) { upd(1, 0, n - 1, pos, val); }
+  T query(int l, int r) { return query(1, 0, n - 1, l, r); }
 };
