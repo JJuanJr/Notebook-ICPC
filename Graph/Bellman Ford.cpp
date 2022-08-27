@@ -1,30 +1,15 @@
-struct edge {
-  int v, u, w;
+auto BellmanFord = [&](int src) -> void {
+  dist.assign(n, INF);
+  dist[src] = 0;
+  forn (i, n - 1)
+    forn (v, n) if (dist[v] != INF)
+      for (ill &u : g[v]) dist[u.ff] = min(dist[u.ff], dist[v] + u.ss);
 };
 
-const int INF = int(1e6);
-int n, m;
-vector<edge> edges;
-
-vector<int> bellman(int v) {
-  vector<int> dist(n, INF);
-  dist[v] = 0;
-  forn (i, n - 1) {
-    for (edge &j : edges) {
-      if (dist[j.v] < INF) {
-        dist[j.u] = min(dist[j.u], dist[j.v] + j.w);
-      }
-    }
-  }
-  return dist;
-}
-
-cin >> n >> m;
-
-forn (i, m {
-  int v, u, w; cin >> v >> u >> w;
-  v--, u--;
-  edges.pb({v, u, w});
-}
-
-vector<int> dist = bellman(0);
+auto Cycle = [&]() -> vector<int> {
+  vector<int> ans;
+  forn (u, n) if (dist[u] != INF)
+    for (ill &v : g[u]) if (dist[v.ff] > dist[u] + v.ss)
+      dist[v.ff] = -INF, ans.pb(v.ff);
+  return ans;
+};
