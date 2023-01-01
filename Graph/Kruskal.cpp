@@ -7,8 +7,8 @@ struct edge {
 };
 
 vector<edge> edges;
-int n; cin >> n;
-forn (i, n) {
+int n, m; cin >> n >> m;
+forn (i, m) {
   int v, u, w; cin >> v >> u >> w;
   v--, u--;
   edges.push_back({v, u, w});
