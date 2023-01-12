@@ -17,6 +17,16 @@ x = __builtin_ffs(n);//primera posicion en 1
 x = __builtin_ctzll((ll) n);//para 64b agregars ll al nombre
 x = (n&(-n));//least significant bit en 1
 
+/* resultado de & en el rango [l, r] */
+ll rangeAND(ll l, ll r) {
+  ll ans = 0;
+  rforn (i, 63) {
+    if ((l & (1ll << i)) != (r & (1ll << i))) break;
+    ans |= (l & (1ll << i));
+  }
+  return ans;
+}
+
 /* Expresiones Regulares */
 string expresion = "(take|love|know|like)s*";
 string cadena = "likes knows";
