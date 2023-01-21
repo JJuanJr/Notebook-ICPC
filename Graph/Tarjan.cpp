@@ -1,35 +1,37 @@
-int n, m; cin >> n >> m;
-vector<int> ady[n];
-
-form (i, m) {
-  int v, u; cin >> v >> u;
-  v--, u--;
-  ady[v].pb(u);
-}
-
-vector<int> low(n), num(n, -1), comp(n);
-stack<int> st;
-int scc, cont;
-scc = cont = 0;
-const int INF = int(1e9);
-
-function<void(int)> tarjan = [&](int v) {
-  low[v] = num[v] = cont++;
-  st.push(v);
-  for (int &u : ady[v]) {
-    if (num[u] == -1) tarjan(u);
-    low[v] = min(low[v], low[u]);
+struct Tarjan {
+  vector<int> low, num, comp;
+  stack<int> st;
+  int n, scc, cont;
+  const int INF = int(1e9);
+  
+  Tarjan(int n) {
+    this->n = n;
+    low.resize(n);
+    num.assign(n, -1);
+    comp.resize(n);
+    scc = cont = 0;
   }
-
-  if (low[v] == num[v]) {
-    int u;
-    do {
-      u = st.top(); st.pop();
-      low[u] = INF;
-      comp[u] = scc;
-    } while (u != v);
-    scc++;
+  
+  void dfs(int v) {
+    low[v] = num[v] = cont++;
+    st.push(v);
+    for (int &u : g[v]) {
+      if (num[u] == -1) dfs(u);
+      low[v] = min(low[v], low[u]);
+    }
+    if (low[v] == num[v]) {
+      int u;
+      do {
+        u = st.top(); st.pop();
+        low[u] = INF;
+        comp[u] = scc;
+      } while (u != v);
+      scc++;
+    }
+  };
+  
+  void go() {
+    forn (i, n)
+      if (num[i] == -1) dfs(i);
   }
 };
-
-forn (i, n) if (num[i] == -1) tarjan(i);
