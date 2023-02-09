@@ -1,19 +1,21 @@
-const int MAX = 1e5 + 5;
-const int K = 17; //log2(MAX) + 1
-int st[MAX][K];
-int arr[MAX];
-int n;
+struct STable {
+  int n, K;
+  vector<vector<int>> st;
 
-void build() {
-  forn (i, n) st[i][0] = arr[i];
-  forn (j, K - 1) {
-    form (i, 0, i + (1 << (j + 1)), 1) {
-      st[i][j + 1] = min(st[i][j], st[i + (1 << j)][j]);
-    }
+  STable(const vector<int> &a) {
+    n = sz(a);
+    K = int(log2(n)) + 1;
+    st.assign(n + 1, vector<int>(K));
+    forn (i, n) st[i][0] = a[i];
+    forn (j, K - 1)
+      for (int i = 0; i + (1 << (j + 1)) <= n; ++i)
+        st[i][j + 1] = oper(st[i][j], st[i + (1 << j)][j]);
   }
-}
 
-int rmq(int l, int r) {
-  int j = 31 - __builtin_clz(r - l + 1);
-  return min(st[l][j], st[r - (1 << j) + 1][j]);
-}
+  int oper(int a, int b) { return __gcd(a, b); }
+
+  int query(int l, int r) {
+    int k = 31 - __builtin_clz(r - l + 1);
+    return oper(st[l][k], st[r - (1 << k) + 1][k]);
+  }
+};
