@@ -8,8 +8,12 @@
 \usepackage{supertabular}
 \usepackage{booktabs}
 \usepackage{multirow}
+\usepackage{makecell}
 
 \geometry{verbose,landscape,letterpaper,tmargin=2cm,bmargin=2cm,lmargin=1.5cm,rmargin=1.5cm}
+
+\newcommand{\multicol}[2]{\multicolumn{#1}{|p{\dimexpr(1.04cm*#1)\relax}|}{#2}}
+\newcommand{\multiRow}[3]{\multirow{#1}{\dimexpr(1cm*#2)\relax}{#3}}
 
 \begin{document}
 	
@@ -17,146 +21,204 @@
 	\author{Universidad de la Amazonia, Colombia.}
 	\maketitle
 	
-	\tableofcontents
-	\hfill
-	
-	\section{Formulas}
+	\section{Formulas, tablas y secuencias}
 
-		\subsection{Formulas generales}
-			\begin{tabular}{|p{6.5cm}|p{3.9cm}|}
+		\subsection{Formulas}
+			%\begin{center}
+			\tablefirsthead{}
+			\tabletail{
+				\midrule 
+				\multicolumn{10}{r}{{Continúa en la siguiente columna}} \\}
+			\tablelasttail{}
+			{\renewcommand{\arraystretch}{1.4}
+			\begin{supertabular}{llllllllll}%total 10.4cm | cada columna 1.04cm
 				\hline
-				\multicolumn{2}{|c|}{PERMUTACIÓN Y COMBINACIÓN} \\ \hline
-				Combinación (Coeficiente Binomial): Número de subconjuntos de k elementos escogidos de un conjunto con n
-					elementos.
-					& $ \binom{n}{k} = \binom{n}{n-k} = \displaystyle\frac{n!}{k!(n-k)!} $ \\ \hline
-
-				Combinación con repetición: Número de grupos formados por n elementos, partiendo de m tipos de elementos.
-					& $ \binom{m+n-1}{n} = \displaystyle\frac{(m + n - 1)!}{n!(m-1)!} $ \\ \hline
+				\multicol{10}{\textbf{PERMUTACIÓN Y COMBINACIÓN}} \\ \hline
+				
+				\multicol{6}{Combinación (Coeficiente Binomial): Número de subconjuntos de k elementos escogidos de un conjunto con n}
+					& \multicol{4}{$ \binom{n}{k} = \binom{n}{n-k} = \displaystyle\frac{n!}{k!(n-k)!} $}\\ \hline
+					
+				\multicol{6}{Combinación con repetición: Número de grupos formados por n elementos, partiendo de m tipos de elementos.}
+					& \multicol{4}{$ \binom{m+n-1}{n} = \displaystyle\frac{(m + n - 1)!}{n!(m-1)!} $}\\ \hline
+					
+				\multicol{7}{Permutación: Número de formas de agrupar n elementos, donde importa el orden y sin repetir elementos}
+					& \multicol{3}{$ P_{n} = n! $}\\ \hline
+					
+				\multicol{7}{Permutación múltiple: Elegir r elementos de n posibles con repetición }
+					& \multicol{3}{$ n^{r} $}\\ \hline
+					
+				\multicol{7}{Permutación con repetición: Se tienen n elementos donde el primero se repite a veces, el segundo b veces, etc. }
+					& \multicol{3}{$ PR_{n}^{a,b,c...} = \displaystyle\frac{P_{n}}{a!b!c!...}$}\\ \hline
+					
+				\multicol{7}{Permutaciones sin repetición: Número de formas de agrupar r elementos de n disponibles, sin repetir elementos. }
+					& \multicol{3}{$\displaystyle\frac{n!}{(n-r)!}$}\\ \hline
+					
+				
+				\multicol{10}{\textbf{CIRCUNFERENCIA Y CÍRCULO}} \\ \hline
+				
+				\multicol{10}{Considerando $r$ como el radio, $\alpha$ como el ángulo del arco o sector, y (R, r) 
+					como radio mayor y menor respectivamente.}\\ \hline
+					
+				\multicol{2}{Área }
+					& \multicol{3}{$A = \pi * r^{2} $}
+					& \multicol{2}{Longitud }
+					& \multicol{3}{$L = 2*\pi*r$}\\ \hline
+					
+				\multicol{2}{Longitud de un arco }
+					& \multicol{3}{$L = \displaystyle\frac{\pi*r*\alpha}{180}$}
+					& \multicol{2}{Área sector circular }
+					& \multicol{3}{$A = \displaystyle\frac{\pi * r^{2} * \alpha}{360}$}\\ \hline
+					
+				\multicol{2}{Área corona circular}
+					& \multicol{3}{$A = \pi  (R^{2} - r^{2})$ }
+					& \multicol{2}{Formula general  }
+					& \multicol{3}{$(X-P_{x})^{2}+(Y-P_{y})^2=r^{2}$}\\ \hline
+					
+				
+				\multicol{10}{\textbf{TRIÁNGULO}} \\ \hline
+				
+				\multicol{10}{Sea $b$ la longitud de la base, $h$ la altura, $a,b,c$ 
+				la longitud de los lados, $A,B,C$ los ángulos, y $r$ el radio de las círcunferencias asociadas.}\\ \hline
+					
+				\multicol{2}{Área con base y altura}
+					& \multicol{3}{$A = \displaystyle\frac{1}{2}b * h$ }
+					& \multicol{2}{Área con 2 lados y su ángulo }
+					& \multicol{3}{$A = \displaystyle\frac{1}{2}b*a*sin(C)$}\\ \hline
+					
+				\multicol{2}{Área con los 3 lados}
+					& \multicol{8}{$ A = \sqrt{p(p - a)(p - b)(p - c)}$ con $p = \displaystyle\frac{a + b + c}{2}$}\\ \hline
+					
+				\multicol{2}{Triangulo equilátero}
+					& \multicol{3}{$A = \displaystyle\frac{\sqrt{3}}{4}a^{2}$ }
+					& \multicol{2}{Triángulo circunscrito a circunferencia }
+					& \multicol{3}{$A = \displaystyle\frac{abc}{4r}$}\\ \hline
+					
+				\multicol{5}{Triángulo inscrito a circunferencia }
+					& \multicol{5}{$A = r(\displaystyle\frac{a+b+c}{2})$}\\ \hline
+					
+					
+				\multicol{10}{\textbf{TRIGONOMÉTRIA}} \\ \hline
+				
+				\multicol{5}{Ley de los senos, con $\gamma$ el angulo opuesto al lado $c$}
+					& \multicol{5}{$\frac{a}{sin(\alpha)} = \frac{b}{sin(\beta)} = \frac{c}{sin(\gamma)}$ } \\ \hline
+				\multicol{5}{Ley de los cosenos, con $\gamma$ el angulo opuesto al lado $c$ }
+					& \multicol{5}{$ c^{2} = a^{2}+b^{2}-2ab*cos(\gamma)$} \\ \hline
+					
+					
+				\multicol{10}{\textbf{PROPIEDADES DEL MÓDULO (RESIDUO)}} \\ \hline
+				
+				\multicol{2}{Neutra}
+					& \multicol{8}{$(a \% b) \% b = a \% b$}\\ \hline
+				\multicol{2}{Suma}
+					& \multicol{8}{$(a + b) \% c = ((a \% c) + (b \% c)) \% c$}\\ \hline
+				\multicol{2}{Resta}
+					& \multicol{8}{$(a - b) \% c = ((a \% c) - (b \% c) + c) \% c$}\\ \hline
+				\multicol{2}{Multiplicación}
+					& \multicol{8}{$(a*b) \% c = ((a \% c)*(b \% c)) \% c$}\\ \hline
+					
+					
+				\multicol{10}{\textbf{FIGURAS}} \\ \hline
+				
+				\multicol{2}{Cono}
+					& \multicol{4}{$A = PI*r*h$}
+					& \multicol{4}{$V = \frac{1}{3} * PI*r^{2}*h$}\\ \hline
+				\multicol{2}{Cilindro}
+					& \multicol{4}{$A = 2*PI*r*(r+h)$}
+					& \multicol{4}{$V = PI*r^{2}*h$}\\ \hline
+				\multicol{2}{Esfera}
+					& \multicol{4}{$A = 4*PI*r^{2}$}
+					& \multicol{4}{$V = \frac{4}{3}*PI*r^{3}$}\\ \hline
+				\multicol{2}{Cuadrilatero}
+					& \multicol{8}{$A = 0.5*a*d*sin(ang(a,d))+0.5*b*c*sin(ang(b,c))$}\\ \hline
+			\end{supertabular}
+			%\end{center}
+			
+			%\begin{center}
+			\tablefirsthead{}
+			\tabletail{
+				\midrule 
+				\multicolumn{10}{r}{{Continúa en la siguiente columna}} \\}
+			\tablelasttail{}
+			{\renewcommand{\arraystretch}{1.4}
+			\begin{supertabular}{llllllllll}%total 10.4cm | cada columna 1.04cm
+				\hline
+				\multicol{10}{\textbf{Formulas extra}} \\ \hline
+				
+				\multicol{4}{Formula de números fibonacci}
+					& \multicol{6}{$f(n) = \frac{1}{\sqrt{5}} * [ (\frac{1 + \sqrt{5}}{2})^{n}  - 
+						(\frac{1 - \sqrt{5}}{2})^{n}]$}\\ \hline
+					
+				\multicol{4}{Formula de fibonacci con matrices}
+					& \multicol{6}{$\begin{bmatrix}
+						1 & 1\\ 
+						1 & 0
+					\end{bmatrix}^{b} =
+					\begin{bmatrix}
+						fib(b+1) & fib(b) \\ 
+						fib(b) & fib(b-1)
+					\end{bmatrix}$}\\ \hline
+					
+				\multicol{4}{Progresión aritmética, Sea $d$ la diferencia y $a_{1}$ el numero inicial}
+					& \multicol{3}{$a_{n} = a_{1}+(n-1)d$}
+					& \multicol{3}{$\sum_{i=1}^{n}a_{i} = n\frac{a_{1}+a_{n}}{2}$}\\ \hline
+					
+				\multicol{4}{Progresión geométrica, Sea $r$ la razón y $a_{1}$ el numero inicial}
+					& \multicol{3}{$a_{n} = a_{1}*r^{n-1}$}
+					& \multicol{3}{$\sum_{i=1}^{n}a_{i} = a_{1} * \frac{r^{n}-1}{r-1}$}\\ \hline
+					
+				\multicol{5}{Distancia de un punto a una recta, una recta con la forma: $ax + by + c$ 
+					y un punto p $(px, py)$}
+					& \multicol{5}{\Large $d = \frac{a*px + b*py + c}{\sqrt{a^{2} + b^{2}}}$}\\ \hline
+					
+				\multicol{5}{Ecuación de la recta que pasa por dos puntos, y = mx + b}
+					& \multicol{5}{\Large $\frac{x - x_{1}}{x_{2} - x_{1}} = \frac{y - y_{1}}{y_{2} - y_{1}}$}\\ \hline
+					
+				\multicol{4}{Ecuación del plano que pasa por 3 puntos, resolver la determinante.}
+					& \multicol{6}{$\begin{vmatrix}
+						X-x_{1} &Y-y_{1} &Z-z_{1} \\ 
+						x_{2}-x_{1} &y_{2}-y_{1} &z_{2}-z_{1} \\ 
+						x_{3}-x_{1} &y_{3}-y_{1} &z_{3}-z_{1}
+					\end{vmatrix} = 0$}\\ \hline
+					
+				\multicol{4}{Teorema de Erd\H{o}s–Gallai, una lista de enteros $d_{1} \geq ... \geq d_{n}$ puede 
+					ser una secuencia de grados de un grafo si:}
+					& \multicol{6}{\makecell{
+							Para cada k $1 \leq k \leq n$\\
+							$\sum_{i=1}^{k} d_{i} \leq k(k+1)+\sum_{i=k+1}^{n} min(d_{i},k)$
+						}}\\ \hline
+					
+				\multicol{4}{Área de un polígono en el plano cartesiano a partir de 
+					sus vértices}
+					& \multicol{6}{\makecell{$S = x_{1}y_{2} + x_{2}y_{3} +...+ x_{n}y_{1}$\\
+					 $D = x_{2}y_{1} + x_{3}y_{2} +...+ x_{1}y_{n}$\\
+					 $A = \frac{1}{2} |S - D|$}}\\ \hline
+					
+				\multicol{2}{Coeficientes binomiales}
+					& \multicol{8}{$C(n, k) = 	
+					\begin{cases}
+						0 & \text{k=0,n=k}\\
+						C(n-1,k-1)+C(n-1,k) & \text{c.c.}
+					\end{cases}
+					$}\\ \hline
+					
+				\multicol{2}{Números de catalán}
+					& \multicol{8}{
+						\makecell{$Cat(n) = 	
+						\begin{cases}
+							1 & \text{si $n = 0$}\\
+							\frac{2n*(2n-1) * Cat(n-1)}{(n+1)*n} & \text{c.c.}
+						\end{cases}
+						$}}\\ \hline
+					
+				\multicol{6}{Teorema de Pick, Sea $A$ el área de un polígono con puntos enteros, $B$ la cantidad de puntos 
+					enteros en el borde, $I$ la cantidad de puntos enteros interiores}
+					& \multicol{4}{$A = I + \frac{B}{2} - 1$}\\ \hline
+					
+			\end{supertabular}	
+			
+		\subsection{Sucesiones}
 		
-				Permutación: Número de formas de agrupar n elementos, donde importa el orden y sin repetir elementos
-					& $ P_{n} = n! $ \\ \hline
-
-				Permutación múltiple: Elegir r elementos de n posibles con repetición 
-					& $ n^{r} $	\\ \hline
-	
-				Permutación con repetición: Se tienen n elementos donde el primero se repite a veces, el segundo b veces, etc.
-					& $ PR_{n}^{a,b,c...} = \displaystyle\frac{P_{n}}{a!b!c!...}$ \\ \hline
-	
-				Permutaciones sin repetición: Número de formas de agrupar r elementos de n disponibles, sin repetir elementos
-					& $\displaystyle\frac{n!}{(n-r)!}$ \\ \hline
-			\end{tabular}
-			
-			\begin{tabular}{|p{2.0cm}|p{2.8cm}|p{2.0cm}|p{2.8cm}|}
-				\hline
-				\multicolumn{4}{|c|}{CIRCUNFERENCIA Y CÍRCULO} \\  \hline
-				\multicolumn{4}{|p{10cm}|}{Considerando $r$ como el radio, $\alpha$ como el ángulo del arco o sector, y (R, r) 
-					como radio mayor y menor respectivamente.} \\ \hline
-						Área                   & $A = \pi * r^{2} $ & Longitud & $L = 2*\pi*r$  \\ \hline
-					Longitud de un arco    & $L = \displaystyle\frac{2*\pi*r*\alpha}{360}$ & Área sector circular 
-						& $A = \displaystyle\frac{\pi * r^{2} * \alpha}{360}$ \\ \hline
-					Área corona circular   & $A = \pi  (R^{2} - r^{2})$ 
-						& Formula general & $(X-P_{x})^{2}+(Y-P_{y})^2=r^{2}$ \\ \hline 
-			\end{tabular}
-			
-			\begin{tabular}{|p{2.0cm}|p{2.8cm}|p{2.0cm}|p{2.8cm}|}
-				\hline
-				\multicolumn{4}{|c|}{TRIÁNGULO} \\  \hline
-
-				\multicolumn{4}{|p{10cm}|}{Considerando $b$ como la longitud de la base, $h$ como la altura, letras minúsculas 
-				como la longitud de los lados, letras mayúsculas como los ángulos, y $r$ como el radio de círcunferencias 
-				asociadas.} \\ \hline
-	
-				Área con base y altura & $A = \displaystyle\frac{1}{2}b * h$ &
-					Área con 2 lados y su ángulo & $A = \displaystyle\frac{1}{2}b*a*sin(C)$ \\ \hline
-				Área con los 3 lados & \multicolumn{3}{ |c|} {$ A = \sqrt{p(p - a)(p - b)(p - c)}$ con 
-					$p = \displaystyle\frac{a + b + c}{2}$ } \\ \hline
-				Triángulo circunscrito a circunferencia & $A = \displaystyle\frac{abc}{4r}$ &
-					Triángulo inscrito a circunferencia & $A = r(\displaystyle\frac{a+b+c}{2})$ \\ \hline
-				Triangulo equilátero & $A = \displaystyle\frac{\sqrt{3}}{4}a^{2}$ & & \\ \hline 
-			\end{tabular}
-
-			\begin{tabular}{|p{3.3cm}|p{3.3cm}|p{3.3cm}|}
-				\hline
-				\multicolumn{3}{|c|}{TRIGONOMÉTRIA} \\ \hline
-	
-				$sin(\alpha) = \displaystyle\frac{opuesto}{hipotenusa}$ 
-					& $cos(\alpha) = \displaystyle\frac{adyacente}{hipotenusa}$
-					& $tan(\alpha) = \displaystyle\frac{opuesto}{adyacente}$ \\ \hline
-		
-				$sec(\alpha) = \displaystyle\frac{1}{cos(\alpha)}$ 
-					& $csc(\alpha) = \displaystyle\frac{1}{sin(\alpha)}$
-					& $cot(\alpha) = \displaystyle\frac{1}{tan(\alpha)}$ \\ \hline
-	
-				Ley de los senos, con $\gamma$ el angulo opuesto al lado $c$ 
-					& \multicolumn{2}{ |c|} {$\displaystyle\frac{a}{sin(\alpha)} 
-						= \frac{b}{sin(\beta)} = \frac{c}{sin(\gamma)}$ } \\ \hline
-				Ley de los cosenos, con $\gamma$ el angulo opuesto al lado $c$ 
-					& \multicolumn{2}{ |c|} {$ c^{2} = a^{2}+b^{2}-2ab*cos(\gamma)$ } \\ \hline
-			\end{tabular}
-			
-			\begin{tabular}{|p{2.2cm}|p{8.2cm}|}
-				\hline
-				\multicolumn{2}{|c|}{PROPIEDADES DEL MÓDULO (RESIDUO)} \\  \hline
-				Neutra & (a \% b) \% b = a \% b \\ \hline
-				Asociativa en suma & (a + b) \% c = ((a \% c) + (b \% c)) \% c \\ \hline
-				Asociativa en resta & (a - b) \% c = ((a \% c) - (b \% c) + c) \% c \\ \hline
-				Asociativa en multiplicación &  (a*b) \% c = ((a \% c)*(b \% c)) \% c \\ \hline
-			\end{tabular}
-			
-			\begin{tabular}{|p{2.0cm}|p{2.8cm}|p{2.0cm}|p{2.8cm}|}
-				\hline
-				\multicolumn{4}{|c|}{FIGURAS} \\ \hline
-				Elipse & $A = PI*a*b $ & Cono & $ V = \frac{1}{3} * PI*r^{2}*h$ \\ \hline
-				Cilindro & $V = PI*r^{2}*h$ & Esfera & $V = \frac{4}{3}*PI*r^{3}$  \\ \hline
-			\end{tabular}
-			
-		\subsection{Tabla ASCII}
-			Caracteres ASCII con sus respectivos valores numéricos.
-			\begin{table}[H]
-				\begin{tabular}{|l|l|l|l|l|l|l|l|}
-					\hline \textbf{No.} & \textbf{ASCII} & \textbf{No.} & \textbf{ASCII}  &
-						\textbf{No.} & \textbf{ASCII} & \textbf{No.} & \textbf{ASCII} \\ \hline
-					32 & space & 40 & ( & 48 & 0 & 56 & 8 \\ \hline
-					33 &  ! & 41 & ) & 49 & 1 & 57 & 9 \\ \hline
-					34 &  " & 42 & * & 50 & 2 & 58 & : \\ \hline
-					35 & \# & 43 & + & 51 & 3 & 59 & ; \\ \hline
-					36 & \$ & 44 & , & 52 & 4 & 60 & < \\ \hline
-					37 & \% & 45 & - & 53 & 5 & 61 & = \\ \hline
-					38 & \& & 46 & . & 54 & 6 & 62 & > \\ \hline
-					39 &  ' & 47 & / & 55 & 7 & 63 & ? \\ \hline
-				\end{tabular}
-			\end{table}
-		
-			\begin{tabular}{|l|l|l|l|l|l|l|l|}
-				\hline \textbf{No.} & \textbf{ASCII} & \textbf{No.} & \textbf{ASCII}  &
-					\textbf{No.} & \textbf{ASCII} & \textbf{No.} & \textbf{ASCII} \\ \hline
-				64 & @ & 72 & H & 80 & P & 88 & X \\ \hline
-				65 & A & 73 & I & 81 & Q & 89 & Y \\ \hline
-				66 & B & 74 & J & 82 & R & 90 & Z \\ \hline
-				67 & C & 75 & K & 83 & S & 91 & [ \\ \hline
-				68 & D & 76 & L & 84 & T & 92 & \textbackslash \\ \hline
-				69 & E & 77 & M & 85 & U & 93 & ] \\ \hline
-				70 & F & 78 & N & 86 & V & 94 & \textasciicircum \\ \hline
-				71 & G & 79 & O & 87 & W & 95 & \_ \\ \hline
-			\end{tabular}
-		
-			\begin{tabular}{|l|l|l|l|l|l|l|l|}
-				\hline \textbf{No.} & \textbf{ASCII} & \textbf{No.} & \textbf{ASCII}  &
-					\textbf{No.} & \textbf{ASCII} & \textbf{No.} & \textbf{ASCII} \\ \hline
-				96 & ` & 104 & h & 112 & p & 120 & x \\ \hline
-				97 & a & 105 & i & 113 & q & 121 & y \\ \hline
-				98 & b & 106 & j & 114 & r & 122 & z \\ \hline
-				99 & c & 107 & k & 115 & s & 123 & \{ \\ \hline
-				100 & d & 108 & l & 116 & t & 124 & \textbar \\ \hline
-				101 & e & 109 & m & 117 & u & 125 & \} \\ \hline
-				102 & f & 110 & n & 118 & v & 126 & \textasciitilde \\ \hline
-				103 & g &  111 & o & 119 & w & 127 &  \\ \hline
-			\end{tabular}
-			
-			\subsection{Sequences}
-				Listado de secuencias mas comunes y como hallarlas.
-
-				\begin{center}
+			\begin{center}
 					\tablefirsthead{}
 					\tabletail{
 						\midrule 
@@ -247,6 +309,16 @@
 						* ... * \frac{p_{k}^{a_{k} + 1} - 1}{p_{k} - 1}$ 
 						\\ \hline
 
+						\multirow{2}{2cm}{Cantidad de divisores de un número}
+						& 1, 3, 4, 7, 6, 12, 8, 15, 13, 18, 12, 28, 14, 24, ...
+						\\ \cline{2-2}
+						&Para todo $n>1$, 
+						$n=\displaystyle p_{1}^{\textstyle a_{1}}\displaystyle p_{2}^{\textstyle a_{2}}...
+						\displaystyle p_{k}^{\textstyle a_{k}}$ entonces:
+
+						$f(n) = \prod_{i=1}^{k} a_{i}+1$
+						\\ \hline
+
 						\multirow{2}{2cm}{Números de Super-Catalán} 
 						& 1, 1, 3, 11, 45, 197, 903, 4279, 20793, 103049, 518859, ...
 						\\ \cline{2-2} 
@@ -258,8 +330,51 @@
 
 					\end{supertabular}
 					}
-				\end{center}
-				
+				\end{center}		
+		
+		\subsection{Tabla ASCII}
+			Caracteres ASCII con sus respectivos valores numéricos.
+			\begin{table}[H]
+				\begin{tabular}{|l|l|l|l|l|l|l|l|}
+					\hline \textbf{No.} & \textbf{ASCII} & \textbf{No.} & \textbf{ASCII}  &
+						\textbf{No.} & \textbf{ASCII} & \textbf{No.} & \textbf{ASCII} \\ \hline
+					32 & space & 40 & ( & 48 & 0 & 56 & 8 \\ \hline
+					33 &  ! & 41 & ) & 49 & 1 & 57 & 9 \\ \hline
+					34 &  " & 42 & * & 50 & 2 & 58 & : \\ \hline
+					35 & \# & 43 & + & 51 & 3 & 59 & ; \\ \hline
+					36 & \$ & 44 & , & 52 & 4 & 60 & < \\ \hline
+					37 & \% & 45 & - & 53 & 5 & 61 & = \\ \hline
+					38 & \& & 46 & . & 54 & 6 & 62 & > \\ \hline
+					39 &  ' & 47 & / & 55 & 7 & 63 & ? \\ \hline
+				\end{tabular}
+			\end{table}
+		
+			\begin{tabular}{|l|l|l|l|l|l|l|l|}
+				\hline \textbf{No.} & \textbf{ASCII} & \textbf{No.} & \textbf{ASCII}  &
+					\textbf{No.} & \textbf{ASCII} & \textbf{No.} & \textbf{ASCII} \\ \hline
+				64 & @ & 72 & H & 80 & P & 88 & X \\ \hline
+				65 & A & 73 & I & 81 & Q & 89 & Y \\ \hline
+				66 & B & 74 & J & 82 & R & 90 & Z \\ \hline
+				67 & C & 75 & K & 83 & S & 91 & [ \\ \hline
+				68 & D & 76 & L & 84 & T & 92 & \textbackslash \\ \hline
+				69 & E & 77 & M & 85 & U & 93 & ] \\ \hline
+				70 & F & 78 & N & 86 & V & 94 & \textasciicircum \\ \hline
+				71 & G & 79 & O & 87 & W & 95 & \_ \\ \hline
+			\end{tabular}
+		
+			\begin{tabular}{|l|l|l|l|l|l|l|l|}
+				\hline \textbf{No.} & \textbf{ASCII} & \textbf{No.} & \textbf{ASCII}  &
+					\textbf{No.} & \textbf{ASCII} & \textbf{No.} & \textbf{ASCII} \\ \hline
+				96 & ` & 104 & h & 112 & p & 120 & x \\ \hline
+				97 & a & 105 & i & 113 & q & 121 & y \\ \hline
+				98 & b & 106 & j & 114 & r & 122 & z \\ \hline
+				99 & c & 107 & k & 115 & s & 123 & \{ \\ \hline
+				100 & d & 108 & l & 116 & t & 124 & \textbar \\ \hline
+				101 & e & 109 & m & 117 & u & 125 & \} \\ \hline
+				102 & f & 110 & n & 118 & v & 126 & \textasciitilde \\ \hline
+				103 & g &  111 & o & 119 & w & 127 &  \\ \hline
+			\end{tabular}
+			
 				\subsection{Secuencias}
 						
 					\textbf{Primos:}\\
