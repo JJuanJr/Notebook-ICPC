@@ -1,4 +1,4 @@
-typedef int T;
+typedef double T;
 struct pt{
     T x, y;
     pt(): x(0), y(0) {}
@@ -11,24 +11,27 @@ struct pt{
     bool operator!=(pt b) {return x != b.x || y != b.y;}
     bool operator<(pt b) {return x == b.x? y < b.y : x < b.x;}
 };
-const double M_PI = acos(-1);
-double DEG_TO_RAD(double n){ return n*M_PI/180.0; }
-double RAD_TO_DEG(double n){ return n*180.0/M_PI; }
+const double PI = acos(-1);
+double DEG_TO_RAD(double n){ return n*PI/180.0; }
+double RAD_TO_DEG(double n){ return n*180.0/PI; }
 T sq(pt p) {return p.x*p.x + p.y*p.y;}
+T cross(pt v, pt w) {return v.x*w.y - v.y*w.x;}
 double abs(pt p) {return sqrt(sq(p));}
+T dot(pt v, pt w) {return v.x*w.x + v.y*w.y;}
 //Transformaciones
 pt translate(pt v, pt p) {return p+v;}
 pt scale(pt c, double factor, pt p) { return c + (p-c)*factor; }
 pt rot(pt p, double ang) { return {p.x*cos(ang) - p.y*sin(ang), p.x*sin(ang) + p.y*cos(ang)}; }
 pt perp(pt p) {return {-p.y, p.x};}
-pt linearTransfo(pt p, pt q, pt r, pt fp, pt fq) { return fp + (r-p) * (fq-fp) / (q-p); }
-T dot(pt v, pt w) {return v.x*w.x + v.y*w.y;}
+pt linearTransfo(pt p, pt q, pt r, pt fp, pt fq) {
+    pt pq = q-p, num{cross(pq, fq-fp), dot(pq, fq-fp)};
+    return fp + pt{cross(r-p, num), dot(r-p, num)} / sq(pq);
+}
 bool isPerp(pt v, pt w) {return dot(v,w) == 0;}
 double angle(pt v, pt w) {
     double cosTheta = dot(v,w) / abs(v) / abs(w);
     return acos(max(-1.0, min(1.0, cosTheta)));
 }
-T cross(pt v, pt w) {return v.x*w.y - v.y*w.x;}
 T orient(pt a, pt b, pt c) {return cross(b-a,c-a);} // colinear == 0, left > 0, right < 0
 bool inAngle(pt a, pt b, pt c, pt p) { //Si un pt se encuentra dentro del angulo ABC
     assert(orient(a,b,c) != 0);
@@ -72,3 +75,6 @@ typedef complex<T> pt; // abs(pt p), arg(pt p)
 T dot(pt v, pt w) {return (conj(v)*w).x;} //Complex stl
 T cross(pt v, pt w) {return (conj(v)*w).y;} //Complex stl
 pt rot(pt p, double ang) {return p * polar(1.0, ang);} //Complex stl
+pt linearTransfo(pt p, pt q, pt r, pt fp, pt fq) {
+    return fp + (r-p) * (fq-fp) / (q-p);
+}
