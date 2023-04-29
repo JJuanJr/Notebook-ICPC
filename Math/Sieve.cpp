@@ -4,6 +4,7 @@ vector<int> prime;
 
 void sieve() {
   bs.set();
+  bs[0] = bs[1] = 0;
   form (i, 2, MAX + 1, 1) {
     if (bs[i]) {
       prime.pb(i);
