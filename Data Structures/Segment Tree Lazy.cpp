@@ -29,21 +29,22 @@ struct STree {
     st[v] = oper(st[v * 2], st[v * 2 + 1]);
   }
 
-  void push(int v, int tl, int tr, T &val) {
-    if (!val) return;
-    st[v] += (tr - tl + 1) * val;
+  void push(int v, int tl, int tr) {
+    if (!lazy[v]) return;
+    st[v] += (tr - tl + 1) * lazy[v];
     if (tl != tr) {
-      lazy[v * 2] += val;
-      lazy[v * 2 + 1] += val;
+      lazy[v * 2] += lazy[v];
+      lazy[v * 2 + 1] += lazy[v];
     }
-    val = 0;
+    lazy[v] = 0;
   }
 
   void upd(int v, int tl, int tr, int l, int r, T val) {
-    push(v, tl, tr, lazy[v]);
+    push(v, tl, tr);
     if(tr < l || tl > r) return;
     if (tl >= l && tr <= r) {
-      push(v, tl, tr, val);
+      lazy[v] = val;
+      push(v, tl, tr);
       return;
     }
     int tm = (tl + tr) / 2;
@@ -53,7 +54,7 @@ struct STree {
   }
 
   T query(int v, int tl, int tr, int l, int r) {
-    push(v, tl, tr, lazy[v]);
+    push(v, tl, tr);
     if(tl > r || tr < l) return neutro;
     if (l <= tl && tr <= r) return st[v];
     int tm = (tl + tr) / 2;
