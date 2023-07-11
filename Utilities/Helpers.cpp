@@ -6,8 +6,7 @@ rl.rlim_cur=1024L*1024L*256L;//256mb
 setrlimit(RLIMIT_STACK, &rl);
 
 /* iterar mascara de bits */
-for(int i=n; i; i=(i-1)&n) // Decreciente
-for(int i=0; i=i-n&n; ) // creciente
+for(int i=n; i; i^=i&-i)
 
 /* funciones sobre bits */
 x = __builtin_popcount(n);//bits encendidos en n

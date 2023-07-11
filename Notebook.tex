@@ -130,6 +130,9 @@
 					& \multicol{4}{$V = \frac{4}{3}*PI*r^{3}$}\\ \hline
 				\multicol{2}{Cuadrilatero}
 					& \multicol{8}{$A = 0.5*a*d*sin(ang(a,d))+0.5*b*c*sin(ang(b,c))$}\\ \hline
+				\multicol{2}{Cuadrilatero}
+					& \multicol{3}{$S = (a+b+c+d)/2$}
+					& \multicol{5}{$A = \sqrt{(S-a)(S-b)(S-c)(S-d)} $}\\ \hline
 			\end{supertabular}
 			%\end{center}
 			
@@ -164,7 +167,11 @@
 					
 				\multicol{4}{Progresión geométrica, Sea $r$ la razón y $a_{1}$ el numero inicial}
 					& \multicol{3}{$a_{n} = a_{1}*r^{n-1}$}
-					& \multicol{3}{$\sum_{i=1}^{n}a_{i} = a_{1} * \frac{r^{n}-1}{r-1}$}\\ \hline
+					& \multicol{3}{\makecell{
+						\\
+						$\sum_{i=1}^{n}a_{i} = a_{1} * \frac{r^{n}-1}{r-1}$ \\
+						$\sum_{i=1}^{ \infty }a_{i} = \frac{a_{1}}{1-r}$
+					}}\\ \hline
 					
 				\multicol{5}{Distancia de un punto a una recta, una recta con la forma: $ax + by + c$ 
 					y un punto p $(px, py)$}
@@ -210,9 +217,32 @@
 						\end{cases}
 						$}}\\ \hline
 					
+				\multicol{2}{Teorema de Cardano-Vieta}
+					& \multicol{8}{
+						\makecell{
+							$\begin{aligned}&\sigma_1=\sum_ir_i=r_1+r_2+\cdots +r_n=-\frac{a_{n-1}}{a_n},\\
+								&\sigma_2=\sum_{i<j}r_ir_j=r_1r_2+r_1r_3+\cdots+r_{n-1}r_n=\frac{a_{n-2}}{a_n},
+								\\&\sigma_3=\sum_{i<j<k}r_ir_jr_k=r_1r_2r_3+\cdots=-\frac{a_{n-3}}{a_n},\\&\ldots
+								\\&\sigma_n=r_1r_2\cdots r_n=\frac{(-1)^na_{0}}{a_n}.
+							\end{aligned}$
+						}}\\ \hline
+					
 				\multicol{6}{Teorema de Pick, Sea $A$ el área de un polígono con puntos enteros, $B$ la cantidad de puntos 
 					enteros en el borde, $I$ la cantidad de puntos enteros interiores}
 					& \multicol{4}{$A = I + \frac{B}{2} - 1$}\\ \hline
+					
+				\multicol{2}{Congruencias}
+					& \multicol{8}{
+						\makecell{
+							%\vspace{1mm}
+							$isPrime(p) \longleftrightarrow (p-1)! \equiv (p-1)\% p$\\
+							%\vspace{1mm}
+							$x^{n} \equiv x^{phi(m)+(n \% phi(m))} \% m$ \\
+							%\vspace{1mm}
+							$a^{phi(m)} \equiv 1 \% m \longleftrightarrow mcd(a, m) = 1$ \\
+							%\vspace{1mm}
+							$a^{p-1} \equiv 1 \% p \rightarrow a^{n \% p-1} \equiv a^{n} \% p$
+						}}\\ \hline
 					
 			\end{supertabular}	
 			
