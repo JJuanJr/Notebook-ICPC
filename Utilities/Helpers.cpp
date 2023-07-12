@@ -37,3 +37,13 @@ while(regex_search(cadena, matches, reg)){
     cadena = matches.suffix();//Recorrer los match
     cout << cadena << endl;
 }
+
+/*Rotar una matriz 90 grados*/
+int n;
+vii rotar(vii &a) {
+	vii v(n, vi(n));
+	forn(i,n)
+    forn(j, n)
+      v[i][j] = a[n - 1 - j][i];
+	return v;
+}
