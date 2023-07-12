@@ -41,11 +41,8 @@ while(regex_search(cadena, matches, reg)){
 /*Rotar una matriz 90 grados*/
 int n;
 vii rotar(vii &a) {
-	vii v(n, vi(n));
-	forn(i,n){
-    forn(j, n){
-      v[i][j] = a[n - 1 - j][i];
-    }
-  }
-	return v;
+  vii v(n, vi(n));
+  forn(i,n) forn(j, n)
+    v[i][j] = a[n - 1 - j][i];
+  return v;
 }
