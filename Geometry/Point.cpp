@@ -72,7 +72,7 @@ typedef double T; // long long abs and arg cast to int
 typedef complex<T> pt; // abs(pt p), arg(pt p)
 #define x real()
 #define y imag()
-// abs(pt) = distancia euclidean
+// abs(pt a - pt b) = distancia euclidean
 // arg(pt) = ángulo que forma el número con el eje real positivo.
 // arg(pt) = arctan(y / x)
 //atan2(y, x) arcotangente de su primer argumento dividido por su segundo argumento.
