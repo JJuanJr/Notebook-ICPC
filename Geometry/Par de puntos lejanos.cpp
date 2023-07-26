@@ -1,5 +1,5 @@
 /*
-Tecnica: Implementar convex hull y iterar sobre el ch.
+Tecnica: Implementar convex hull e iterar sobre el ch.
 */
 double distancia(vector<pt> pts){
     vector<pt> ch = convexhull(pts);
