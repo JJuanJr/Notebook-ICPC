@@ -23,7 +23,7 @@ struct STree {
   void upd(int &root, int idx, T val, int l, int r) {
     seg[curr].lt = seg[root].lt;
     seg[curr].rt = seg[root].rt;
-    seg[curr].val = oper(seg[root].val, val);
+    seg[curr].val = seg[root].val + val;
     root = curr++;
     if (l == r) return;
     int mid = (l + r) >> 1;
