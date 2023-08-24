@@ -8,7 +8,7 @@ struct STree {
   int curr, n;
   vector<int> ver;
   vector<node> seg;
-  const T nuetro = T(0);
+  const T nuetro = T(INT_MAX);
 
   STree(vector<T> &a) {
     curr = 1;
@@ -18,17 +18,19 @@ struct STree {
     forn (i, n) upd(0, i, a[i]);
   }
 
-  inline T oper(T a, T b) { return a + b; }
+  inline T oper(T a, T b) { return min(a, b); }
 
   void upd(int &root, int idx, T val, int l, int r) {
-    seg[curr].lt = seg[root].lt;
-    seg[curr].rt = seg[root].rt;
-    seg[curr].val = seg[root].val + val;
+    seg[curr] = seg[root];
     root = curr++;
-    if (l == r) return;
+    if (l == r) {
+      seg[root].val = val;
+      return;
+    }
     int mid = (l + r) >> 1;
     if (idx <= mid) upd(seg[root].lt, idx, val, l, mid);
     else upd(seg[root].rt, idx, val, mid + 1, r);
+    seg[root].val = oper(seg[seg[root].lt].val, seg[seg[root].rt].val);
   }
 
   T qry(int root, int a, int b, int l, int r) {
