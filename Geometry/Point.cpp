@@ -28,7 +28,7 @@ pt linearTransfo(pt p, pt q, pt r, pt fp, pt fq) {
     return fp + pt{cross(r-p, num), dot(r-p, num)} / sq(pq);
 }
 bool isPerp(pt v, pt w) {return dot(v,w) == 0;}
-double angle(pt v, pt w) {
+double angle(pt v, pt w) {//angle(b-a, c-a)
     double cosTheta = dot(v,w) / abs(v) / abs(w);
     return acos(max(-1.0, min(1.0, cosTheta)));
 }
@@ -67,7 +67,7 @@ bool polarSort(pt v, pt w) {
     //Ordenar alrededor de un punto diferente a (0,0)
     return make_tuple(half(v-o), 0) < make_tuple(half(w-o), cross(v-o, w-o));
 }
-//Complex stl 
+//Complex stl
 typedef double T; // long long abs and arg cast to int
 typedef complex<T> pt; // abs(pt p), arg(pt p)
 #define x real()

@@ -5,9 +5,9 @@ ll rho(ll n){
     ll t = 2, h = 2, g = 1;
     ll c = (rand() % n) + 1;
     while(g == 1){
-        t = (mult_mod(t, t, n) + c) % n;
-        h = (mult_mod(h, h, n) + c) % n;
-        h = (mult_mod(h, h, n) + c) % n;
+        t = (mulmod(t, t, n) + c) % n;
+        h = (mulmod(h, h, n) + c) % n;
+        h = (mulmod(h, h, n) + c) % n;
         if(t > h) g = __gcd(t - h, n);
         else g = __gcd(h - t, n);
     }

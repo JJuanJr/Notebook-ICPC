@@ -18,3 +18,22 @@ int modular_inverse_extEuclid(int a, int m){
     x = (x % m + m) % m;
     return x;
 }
+
+vi inversos(vi a, int m){
+    vi inv;
+    int v = 1;
+    forn(i, sz(a)){
+        inv.pb(v);
+        v = (v * a[i]) % m;
+    }
+
+    int x, y;
+    extEuclid(v, m, x, y);
+    x = (x % m + m) % m;
+
+    rforn(i, sz(a)){
+        inv[i] = inv[i] * x;
+        x = (x * a[i]) % m;
+    }
+    return inv;
+}
