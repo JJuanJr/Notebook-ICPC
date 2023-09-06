@@ -2,7 +2,7 @@ Dada una string s, devuelve un vector Z donde Z[i] representa el prefijo
 de mayor longitud  de s, que tambien es prefijo del sufijo de s que inicia
 en i.
          01234567
-Ejemplo: aabzaaba "aab" es un prefijo de s y "aaba" es un sufijo de s, Z[4] = 2.
+Ejemplo: aabzaaba "aab" es un prefijo de s y "aaba" es un sufijo de s, Z[4] = 3.
 
 Otra definicion: Dado un string s retorna un vector z donde z[i] es igual al mayor
 numero de caracteres desde s[i] que coinciden con los caracteres desde s[0]
