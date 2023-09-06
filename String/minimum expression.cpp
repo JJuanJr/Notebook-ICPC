@@ -1,7 +1,7 @@
 Dado un string s devuelve el indice donde comienza la rotación lexicograficamente menor de s.
 
-/// O(n)
-int minimum_expression(string s) {
+Complejidad: O(|n|)
+int minimum_expression(string s) { //Factorizacion de lyndon
     s = s+s; // si no se concatena devuelve el indice del sufijo menor
     int len = s.size(), i = 0, j = 1, k = 0;
     while (i+k < len && j+k < len) {

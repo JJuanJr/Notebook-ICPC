@@ -1,5 +1,6 @@
 Dado un patron S y un texto T, se desea conocer los indices de las ocurrencias del patron S en el texto T.
 
+Complejidad: O(|n| + |t|)
 vector<int> rabin_karp(string const& s, string const& t) {
     const int p = 31; 
     const int m = 1e9 + 9;

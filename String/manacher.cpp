@@ -1,6 +1,7 @@
 Devuelve un vector p donde, para cada i, p[i] es igual al largo del palindromo mas largo con centro en i.
 Tener en cuenta que el string debe tener el siguiente formato: %#s[0]#s[1]#...#s[n-1]#$ (s es el string original y n es el largo del string)
 
+Complejidad: O(|n|)
 vector<int> manacher(string s) {
     int n = s.size();
     vector<int> p(n, 0);

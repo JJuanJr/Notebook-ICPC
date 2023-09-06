@@ -75,7 +75,8 @@ struct suffixAutomaton {
             sa[u].cnt += count_occ(v.ss);
         return sa[u].cnt;
     }
-
+    
+    //La cantidad de caminos, es la cantidad de substring diferentes
     ll count_paths(int u) {
         if (sa[u].out != 0) return sa[u].out;
         for (auto &v : sa[u].next)

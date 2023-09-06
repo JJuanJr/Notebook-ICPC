@@ -1,6 +1,8 @@
 Construye un arbol con patrones string, sirve para responder consultas
 del tipo dado n patrones contar la cantidad de ocurrencias en un texto T.
 
+Complejidad: build(|patrones| * M)
+Complejidad: query(|text|)
 const int M = 26;
 struct node{
 	vector<int> child;
@@ -8,7 +10,7 @@ struct node{
 	char c = 0;
 	int suffixLink = -1, endLink = -1;
 	int id = -1;
- 
+	//int cnt = 0; Para contar patrones repetidos
 	node(int p = -1, char c = 0) : p(p), c(c){
 		child.resize(M, -1);
 	}
