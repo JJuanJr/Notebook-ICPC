@@ -1,4 +1,4 @@
-struct mbm {
+struct mbm { // O(V * E)
   int l, r;
   vector<int> mat;
   vector<bool> vis;

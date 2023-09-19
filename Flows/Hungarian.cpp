@@ -1,5 +1,5 @@
 template<typename T> 
-struct Hungarian {
+struct Hungarian { // O(V^3)
   int n, m;
   const T inf = 1e18;
   vector<T> u, v; vector<int> p, way;

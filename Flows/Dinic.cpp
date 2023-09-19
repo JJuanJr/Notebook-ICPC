@@ -4,7 +4,7 @@ struct FlowEdge {
   FlowEdge(int _v, int _u, ll _cap) : v(_v), u(_u), cap(_cap) {}
 };
 
-struct Dinic {
+struct Dinic { // O(V^2 * E)
   const ll flow_inf = 1e18;
   vector<FlowEdge> edges;
   vector<vector<int>> g;
@@ -60,14 +60,14 @@ struct Dinic {
   ll flow() {
     ll f = 0;
     while (true) {
-        fill(level.begin(), level.end(), -1);
-        level[s] = 0;
-        q.push(s);
-        if (!bfs()) break;
-        fill(ptr.begin(), ptr.end(), 0);
-        while (ll pushed = dfs(s, flow_inf)) {
-            f += pushed;
-        }
+      fill(level.begin(), level.end(), -1);
+      level[s] = 0;
+      q.push(s);
+      if (!bfs()) break;
+      fill(ptr.begin(), ptr.end(), 0);
+      while (ll pushed = dfs(s, flow_inf)) {
+        f += pushed;
+      }
     }
     return f;
   }
