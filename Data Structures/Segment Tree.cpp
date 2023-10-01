@@ -39,7 +39,7 @@ struct STree {
     else upd(v * 2 + 1, tm + 1, tr, pos, val);
     st[v] = oper(st[v * 2], st[v * 2 + 1]);
   }
-
+  //indexando desde 0, inclusivo
   void upd(int pos, T val) { upd(1, 0, n - 1, pos, val); }
   T query(int l, int r) { return query(1, 0, n - 1, l, r); }
 };

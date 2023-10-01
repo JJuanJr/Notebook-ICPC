@@ -5,6 +5,11 @@ getrlimit(RLIMIT_STACK, &rl);
 rl.rlim_cur=1024L*1024L*256L;//256mb
 setrlimit(RLIMIT_STACK, &rl);
 
+/* Optimizar tiempo */
+#pragma GCC optimize("O3")
+#pragma GCC optimize("Ofast,unroll-loops,no-stack-protector,fast-math")
+#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
+
 /* iterar mascara de bits */
 for(int i=n; i; i^=i&-i)
 
@@ -13,7 +18,7 @@ x = __builtin_popcount(n);//bits encendidos en n
 x = __builtin_ctz(n);//ceros a la derecha de n
 x = __builtin_clz(n);//ceros a la izquierda de n
 x = __builtin_ffs(n);//primera posicion en 1
-x = __builtin_ctzll((ll) n);//para 64b agregars ll al nombre
+x = __builtin_ctzll((ll) n);//para 64b agregar ll al nombre
 x = (n&(-n));//least significant bit en 1
 
 /* resultado de & en el rango [l, r] */

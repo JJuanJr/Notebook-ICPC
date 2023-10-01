@@ -74,7 +74,7 @@ struct polygon {
         for(int it = 0; it < 2; it++) {
             int start = ch.size();
             for(auto &a : p) {
-                /// if colineal are needed, use < and remove repeated points
+                // if colineal are needed, use < and remove repeated points
                 while(ch.size() >= start+2 && orient(ch[ch.size()-2], ch.back(), a) <= 0)
                     ch.pop_back();
                 ch.push_back(a);
@@ -83,7 +83,8 @@ struct polygon {
             reverse(p.begin(), p.end());
         }
         if(ch.size() == 2 && ch[0] == ch[1]) ch.pop_back();
-        /// be careful with CH of size < 3
+        // if colineal are needed, use this
+		//if(sz(ch) > sz(p)) ch.resize(p.size());
         p.swap(ch);
     }
     vector<pii> antipodal() {
