@@ -71,6 +71,14 @@ struct Dinic { // O(V^2 * E)
     }
     return f;
   }
+
+  vector<ii> min_cut() {
+    vector<ii> cut;
+    for (auto &e : edges)
+      if (level[e.v] != -1 && level[e.u] == -1 && e.cap > 0)
+        cut.pb({e.v, e.u});
+    return cut;
+  }
 };
 
 // Min Vertex Cover: vertices de L con level[v]==-1 y vertices de R con level[v]>0
