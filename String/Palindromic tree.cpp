@@ -1,64 +1,48 @@
-Permite calcular la cantidad de diferentes palindromos de S online
-sz(tree) - 2 = numero de substrings palindromos diferentes 
-const int alfa = 26;
-const char L = 'a';
-
-struct node {
-  int next[alfa], link, len;
-  ll cnt;
-  node(int x, int l = 0, ll c = 1): len(x), link(l), cnt(c){
-    memset(next, 0, sizeof next);
-  }
-  int& operator[](int i) { return next[i]; }
-};
-
-struct palindromic_tree {
-  vector<node> tree;
-  string s;
-  int n, last;
-  palindromic_tree(string t = ""){
-    n = last = 0;
-    tree.pb(node(-1));
-    tree.pb(node(0));
-    for(auto &c: t)add_char(c);
-  }
-
-  int getlink(int p){
-    while(s[n - tree[p].len - 1] != s[n])p = tree[p].link;
-    return p;
-  }
-
-  void add_char(char ch){
-    s.pb(ch);
-    int p = getlink(last), c = ch - L;
-    if(!tree[p][c]){
-      int link = getlink(tree[p].link);
-      link = max(1, tree[link][c]);
-      tree[p][c] = sz(tree);
-      tree.pb(node(tree[p].len + 2,link, 0));
+// Permite calcular la cantidad de diferentes palindromos de S online
+// sz(ns) - 2 = numero de substrings palindromos diferentes 
+struct palindromic_tree{
+    static const int SIGMA=26; static const char L = 'a';
+    struct Node{
+        int len, link, to[SIGMA];
+        ll cnt;
+        Node(int len, int link=0, ll cnt=1):len(len),link(link),cnt(cnt){
+            memset(to,0,sizeof(to));
+        }
+    };
+    vector<Node> ns;
+    int last, longString;
+    palindromic_tree():last(0){ns.pb(Node(-1));ns.pb(Node(0));}
+    void add(int i, string &s){
+        int p=last, c=s[i]-L;
+        while(s[i-ns[p].len-1]!=s[i])p=ns[p].link;
+        if(ns[p].to[c]){
+            last=ns[p].to[c];
+            ns[last].cnt++;
+        }else{
+            int q=ns[p].link;
+            while(s[i-ns[q].len-1]!=s[i])q=ns[q].link;
+            q=max(1,ns[q].to[c]);
+            last=ns[p].to[c]=sz(ns);
+            ns.pb(Node(ns[p].len+2,q,1));
+            longString = max(longString, ns[p].len+2);
+        }
     }
-    last = tree[p][c];
-    tree[last].cnt++;
-    n++;
-  }
-
-  void countOcurrences(){
-    for(int i = sz(tree) - 1; i >= 2 ; --i)
-      if(tree[i].link >= 2) tree[tree[i].link].cnt += tree[i].cnt;
-    for(int i = 2; i < sz(tree) ; ++i)
-      if(tree[i].link >= 2) tree[i].cnt += tree[tree[i].link].cnt;
-  }
-  //numero comun subcadenas palindromas de S and T
-  //Construir tree con S y consultar con T.
-  ll query(string &t){//Llamar antes countOcurrences
-    int u = 0; ll ans = 0;
-    for(int i = 0; i < sz(t) ; ++i){
-      while((t[i-tree[u].len-1] != t[i] || !tree[u][t[i]-L]) && u)
-        u = tree[u].link;
-      u = tree[u][t[i]-L];
-      if(u) ans += tree[u].cnt;
+    void countOcurrences(){
+      for(int i = sz(ns) - 1 ; i >= 2 ; --i)
+        if(ns[i].link >= 2) ns[ns[i].link].cnt += ns[i].cnt;
+      for(int i  = 2 ; i < sz(ns) ; ++i)
+        if(ns[i].link >= 2)  ns[i].cnt += ns[ns[i].link].cnt;
     }
-    return ans;
-  }
-  node& operator[](int i) { return tree[i]; }
+    //numero comun subcadenas palindromas de S and T
+    //Construir tree con S y consultar con T.
+    ll query(string &t){ //Llamar antes countOcurrences
+      int u  = 0; ll ans = 0;
+      for(int i = 0 ; i < sz(t) ; ++i){
+        while((t[i - ns[u].len - 1] != t[i] || !ns[u].to[t[i]-L]) && u)
+          u = ns[u].link;
+        u = ns[u].to[t[i]-L];
+        if(u) ans += ns[u].cnt;
+      }
+      return ans;
+    }
 };
