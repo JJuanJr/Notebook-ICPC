@@ -160,6 +160,11 @@ struct suffixAutomaton {
         forn(i, lenCadena + 1) st[i + 1] += st[i];
         return st;
     }
-
+    //Devuelve V, V[i] = max ocurrencias para una subcadena de S de longitud i.
+    void maxOcurrenciasLengths(int n){ //Llamar antes count_occ
+        vector<int> ans(n + 1);
+        forn(i, sz(sa)) ans[sa[i].len] = max(ans[sa[i].len], sa[i].cnt);
+        forn(i, n) cout << ans[i+1] << endl;
+    }
     node& operator[](int i) { return sa[i]; }
 };
