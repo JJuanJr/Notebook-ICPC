@@ -98,3 +98,24 @@ vector<ll> coef(vector<ll> roots, bool first = true){
     }
 	return m;
 }
+inline ll modn(ll x){ x = x%mod; if(x < 0ll) x += mod; return x; }
+//interpolate for consecutive values X and evaluate at K;
+ll interpolateAndEvaluate(ll k, int inix,  vector<ll> &y){
+    ll den = 1, num = 1;
+	int len = inix + sz(y) - 1;
+
+    forab(i, inix, len){
+        num = (num * (k - (i+1))) % mod;
+        den = (den*modn(-1ll*i)) % mod;
+    }
+
+    ll res = (y[0]*divmod(num, den)) % mod;
+    forab(i, inix, len){
+        num = divmod(num, k-(i+1));
+        num = (num * (k - i)) % mod;
+        den = divmod(den, modn(-1ll*(sz(y) - i)));
+        den = (den*i) % mod;
+        res = (res + (y[i]*divmod(num, den)) % mod) % mod;
+    }
+    return res;
+}
