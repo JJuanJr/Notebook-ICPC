@@ -1,40 +1,24 @@
-int S, n, q;
+void add(int x) {}
+void del(int x) {}
+int get_ans() {}
 
-struct query {
-  int l, r, idx;
-  query(int l, int r, int idx): l(l), r(r), idx(idx) {}
-
-  bool operator < (const query &x) const {
-    if (l / S != x.l / S) return l / S < x.l / S;
-    return (l / S & 1) ?  r < x.r: r > x.r;
+vector<int> mo(const vector<ii> &q) {
+  int l = 0, r = -1, blk = 350; // sqrt(n)
+  vector<int> inx(sz(q)), ans(sz(q));
+  auto K = [&](const ii &x) -> ii {
+    return ii(x.ff / blk, x.ss ^ -(x.ff / blk & 1));
+  };
+  iota(all(inx), 0);
+  sort(all(inx), [&](int a, int b) -> bool {
+    return K(q[a]) < K(q[b]);
+  });
+  for (int nxt : inx) {
+    ii it = q[nxt];
+    while (r < it.ss) add(++r);
+    while (l > it.ff) add(--l);
+    while (r > it.ss) del(r--);
+    while (l < it.ff) del(l++);
+    ans[nxt] = get_ans();
   }
-};
-
-vector<query> qu;
-vector<int> ans;
-
-void add(int x) {
-
-}
-
-void del(int x) {
-
-}
-
-int get_ans() {
-  return -1;
-}
-
-void mo_s() {
-  S = sqrt(n);
-  sort(all(qu));
-  ans.resize(q);
-  int l = 0, r = -1;
-  for (query &it: qu) {
-    while (r < it.r) add(++r);
-    while (l > it.l) add(--l);
-    while (r > it.r) del(r--);
-    while (l < it.l) del(l++);
-    ans[it.idx] = get_ans();
-  }
+  return ans;
 }
